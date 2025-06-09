@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block product %}
+  <p>Alterar Entrada</p>
+    <form action="{% url 'entrada:update_entrada' pk %}" method="POST">
+      {% csrf_token %}Reverse for 'update_entrada' with arguments '(1,)' not found. 1 pattern(s) tried:
+      {{ form.as_p }}
+      <button class="button is-primary" type="submit">salvar</button>
+  </form>
+{% endblock %}

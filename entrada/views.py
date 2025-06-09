@@ -33,8 +33,6 @@ def new_entrada(request):
         return render(request, template_name, context)
 
 def update_entrada(request, pk):
-
-    print('==> ', quantidade)
     if request.methods == 'POST':
         form = EntradaForm(request.POST,instace=entrada)
         if form.is_valid():

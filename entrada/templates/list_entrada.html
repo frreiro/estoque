@@ -17,6 +17,7 @@
       <td>{{ entrada.preco }}</td>
       <td>{{ entrada.quantidade }}</td>
       <td><a class="button is-primary" href="{% url 'entrada:update_entrada' entrada.id %}">alterar</a></td>
+      <td><a class="button is-primary" href="{% url 'entrada:delete_entrada' entrada.id %}">deletar</a></td>
     </tr>{% endfor %} </tbody>
 </table>
 {% endblock %}

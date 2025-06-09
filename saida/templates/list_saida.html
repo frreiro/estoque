@@ -1,0 +1,21 @@
+{% extends 'base.html' %}{% block product %}
+<p>Entrada</p>
+<a class="button is-primary" href="{% url 'saida:new_saida' %}">Novo</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Produto</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>{% for saida in saidas %}<tr>
+      <th>{{ entrada.id }}</th>
+      <td>{{ entrada.produto }}</td>
+      <td>{{ entrada.preco }}</td>
+      <td>{{ entrada.quantidade }}</td>
+    </tr>{% endfor %} </tbody>
+</table>
+{% endblock %}

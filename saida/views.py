@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Saidas
 from .forms import SaidaForm
+
 # Create your views here.
 def list_saida(request):
     saidas = Saidas.objects.all()
@@ -16,7 +17,7 @@ def new_saida(request):
         form = SaidaForm(request.POST)
         if form.is_valid():
             form.save(commit=False)
-            form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade + form.cleaned_data['quantidade']
+            form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade - form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
             form.save()
             return redirect('saida:list_saida')

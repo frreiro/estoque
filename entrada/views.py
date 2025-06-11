@@ -20,7 +20,6 @@ def new_entrada(request):
         if form.is_valid():
             form.save(commit=False)
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade + form.cleaned_data['quantidade']
-            form.cleaned_data['produto'].preco = form.cleaned_data['preco']
             form.cleaned_data['produto'].save_base()
             form.save()
             return redirect('entrada:list_entrada')

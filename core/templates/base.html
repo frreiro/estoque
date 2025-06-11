@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+ initial-scale=1.0">
     <title>Django</title>
 </head>
+
 <body>
     <h1>Response Horizontal-to-Scrollable Menu</h1>
     <a href="{% url 'produto:list_produto' %}">Produtos</a>
@@ -14,4 +15,5 @@
     <a href="{% url 'saida:list_saida' %}">Saídas</a>
     {% block product %}{% endblock %}
 </body>
+
 </html>

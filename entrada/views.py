@@ -21,7 +21,7 @@ def new_entrada(request):
             form.save(commit=False)
             if form.cleaned_data['quantidade'] <= 0:
                 form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
-                return render(request, 'new_saida.html', {'form': form})
+                return render(request, 'new_entrada.html', {'form': form})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
             form.save()
@@ -43,9 +43,12 @@ def update_entrada(request, pk):
         form = EntradaForm(request.POST,instance=entrada)
         if form.is_valid():
             form.save(commit=False)
+            if form.cleaned_data['produto'].quantidade - quantidade + form.cleaned_data['quantidade'] <= 0:
+                form.add_error('quantidade', 'Quantidade insuficiente em estoque.')
+                return render(request, template_name, {'form': form})
             if form.cleaned_data['quantidade'] <= 0:
                 form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
-                return render(request, 'new_saida.html', {'form': form})
+                return render(request,template_name, {'form': form})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade - quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
             form.save()
@@ -59,6 +62,12 @@ def update_entrada(request, pk):
         
 def delete_entrada(request, pk): 
     entrada = Entradas.objects.get(pk=pk)     
+    if entrada.produto.quantidade - entrada.quantidade <= 0:
+        print("Não foi possivel excluir a entrada, pois o produto ficaria com quantidade negativa.")
+        context = {
+            'error': "Não foi possivel excluir a entrada, pois o produto ficaria com quantidade negativa.",
+        }
+        return render(request, 'error_entrada.html', context)
     entrada.produto.quantidade = entrada.produto.quantidade - entrada.quantidade
     entrada.produto.save()
     entrada.delete()

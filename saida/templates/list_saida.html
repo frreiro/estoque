@@ -14,6 +14,8 @@
       <th>{{ saida.id }}</th>
       <td>{{ saida.produto }}</td>
       <td>{{ saida.quantidade }}</td>
+      <td><a class="button is-primary" href="{% url 'saida:update_saida' saida.id %}">alterar</a></td>
+      <td><a class="button is-primary" href="{% url 'saida:delete_saida' saida.id %}">deletar</a></td>
     </tr>{% endfor %} </tbody>
 </table>
 {% endblock %}

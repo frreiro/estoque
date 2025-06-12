@@ -19,6 +19,9 @@ def new_entrada(request):
         form = EntradaForm(request.POST)
         if form.is_valid():
             form.save(commit=False)
+            if form.cleaned_data['quantidade'] <= 0:
+                form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
+                return render(request, 'new_saida.html', {'form': form})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
             form.save()
@@ -32,19 +35,22 @@ def new_entrada(request):
         return render(request, template_name, context)
 
 def update_entrada(request, pk):
-    if request.methods == 'POST':
-        form = EntradaForm(request.POST,instace=entrada)
+    entrada = Entradas.objects.get(pk=pk)
+    quantidade = entrada.quantidade
+    template_name = 'update_entrada.html'
+
+    if request.method == 'POST':
+        form = EntradaForm(request.POST,instance=entrada)
         if form.is_valid():
-            print('==>    ', quantidade, form.cleaned_data['quantidade'])
             form.save(commit=False)
+            if form.cleaned_data['quantidade'] <= 0:
+                form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
+                return render(request, 'new_saida.html', {'form': form})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade - quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
             form.save()
             return redirect('entrada:list_entrada')
     else:
-        entrada = Entradas.objects.get(pk=pk)
-        quantidade = entrada.quantidade
-        template_name = 'update_entrada.html'
         context = {
             'form': EntradaForm(instance=entrada),
             'pk': pk

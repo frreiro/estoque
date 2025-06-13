@@ -2,52 +2,54 @@
 <html lang="pt-br">
 
 <head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <script src="https://kit.fontawesome.com/a49a7d283e.js" crossorigin="anonymous"></script>
-    <title>Django</title>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/a49a7d283e.js" crossorigin="anonymous"></script>
+  <title>Django</title>
 </head>
 
 <body>
-    <h1 class="title">Response Horizontal-to-Scrollable Menu</h1>
-    <!-- <a href="{% url 'produto:list_produto' %}">Produtos</a> -->
-    <!-- <a href="{% url 'entrada:list_entrada' %}">Entradas</a>
-    <a href="{% url 'saida:list_saida' %}">Saídas</a> -->
-    <div class="tabs is-toggle">
-      <ul>
-        <li class="is-active">
-          <a href="{% url 'produto:list_produto' %}">
-            <span class="icon is-small">
-              <i class="fa-solid fa-book"></i>
-            </span>
-            <span>Produtos</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'entrada:list_entrada' %}">
-            <span class="icon is-small">
-              <i class="fa-solid fa-circle-up"></i>
-            </span>
-            <span>Entradas</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'saida:list_saida' %}">
-            <span class="icon is-small">
-              <i class="fa-solid fa-eraser"></i>
-            </span>
-            <span>Saídas</span>
-          </a>
-        </li>
-      </ul>
+  <nav class="navbar mr-6 ml-5 mt-6 mb-3">
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <h1 class="title">
+        <span class="icon is-small mr-3">
+          <i class="fa-solid fa-box-open"></i>
+        </span>
+        Estoque
+      </h1>
+    </a>
+    <div class="navbar-end">
+      <h2 class="subtitle is-6 has-text-primary">by Lucas Viana</h2>
     </div>
-    {% block product %}{% endblock %}
-    <script src="https://example.com/fontawesome/v6.6.0/js/fontawesome.js" data-auto-replace-svg="nest"></script>
-    <script src="https://example.com/fontawesome/v6.6.0/js/solid.js"></script>
-    <script src="https://example.com/fontawesome/v6.6.0/js/brands.js"></script>
+  </nav>
+  <!-- <a href="{% url 'produto:list_produto' %}">Produtos</a> -->
+  <!-- <a href="{% url 'entrada:list_entrada' %}">Entradas</a>
+    <a href="{% url 'saida:list_saida' %}">Saídas</a> -->
+  <div class="columns is-mobile" style="height: 100%;">
+    <!-- Menu lateral -->
+    <div class="column is-2 sidebar">
+      <aside class="menu p-3">
+        <p class="menu-label">GERENCIAMENTO</p>
+        <ul class="menu-list">
+          <li><a href="{% url 'produto:list_produto' %}">Produtos</a></li>
+        </ul>
+
+        <p class="menu-label">MOVIMENTAÇÃO</p>
+        <ul class="menu-list">
+          <li><a href="{% url 'entrada:list_entrada' %}">Entradas</a></li>
+          <li><a href="{% url 'saida:list_saida' %}">Saídas</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="column" style="margin-right: 10rem;">
+      <!-- <h1 class="title">Dashboard</h1> -->
+      {% block product %}{% endblock %}
+    </div>
+  </div>
 </body>
 
 </html>
-

@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
-{% block product %} 
-    <p>Alterar produto</p>
-    <form action="{% url 'produto:update_produto' pk %}" method="post"> 
-        {% csrf_token %} 
-        {{ form.as_p }} 
-        <button type="submit">Salvar</button> 
-    </form>
+{% load crispy_forms_tags %}
+{% block product %}
+<h1 class="subtitle is-3 has-text-primary">
+    Editar Produto
+</h1>
+<div>
+    <nav class="navbar breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li class=""><a href="{% url 'produto:list_produto' %}">Pagina Inicial</a></li>
+            <li class="is-active"><a href="#">Editar Produto</a></li>
+        </ul>
+    </nav>
+</div>
+<form action="{% url 'produto:update_produto' pk %}" method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }}  -->
+    {{ form|crispy }}
+    <button class="button is-primary mt-5" type="submit">salvar</button>
+</form>
 {% endblock %}

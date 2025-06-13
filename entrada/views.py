@@ -20,7 +20,7 @@ def new_entrada(request):
         if form.is_valid():
             form.save(commit=False)
             if form.cleaned_data['quantidade'] <= 0:
-                form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
+                form.add_error('quantidade', 'Insira apenas valores positivos')
                 return render(request, 'new_entrada.html', {'form': form})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()
@@ -47,7 +47,7 @@ def update_entrada(request, pk):
                 form.add_error('quantidade', 'Quantidade insuficiente em estoque.')
                 return render(request, template_name, {'form': form, 'pk': pk})
             if form.cleaned_data['quantidade'] <= 0:
-                form.add_error('quantidade', 'Insira apenas valores positivos maiores que zero.')
+                form.add_error('quantidade', 'Insira apenas valores positivos')
                 return render(request,template_name, {'form': form, 'pk': pk})
             form.cleaned_data['produto'].quantidade = form.cleaned_data['produto'].quantidade - quantidade + form.cleaned_data['quantidade']
             form.cleaned_data['produto'].save_base()

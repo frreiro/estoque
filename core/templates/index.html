@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block product %}
-<h1>Aplicação estoqueWeb</h1>
-<p>Praesent sapien massa, convallis a pellentesque nec,
-    egestas non nisi. Praesent sapien massa, convallis a
-    pellentesque nec, egestas non nisi. Sed porttitor lectus nibh.
-    Vivamus magna justo, lacinia eget consectetur sed, convallis
-    at tellus. Proin eget to rtor risus. Vivamus suscipit tortor
-    eget felis porttitor volutpat. Nulla porttitor accumsan
-    tincidunt. Nulla porttitor accumsan tincidunt. Vestibulum ante
-    ipsum primis in faucibus orci luctus et ultrices posuere
-    cubilia Curae; Donec velit neque, auctor sit ametaliquam vel,
-    ullamcorper sit amet ligula. Praesent sapien massa, convallis
-    a pellentesque nec, egestas non nisi.</p>
+<h1 class="title">Aplicação</h1>
+    <article class="message">
+        <div class="message-header">
+          <p>Estoque</p>
+          <a class="button is-success"  href="{% url 'produto:list_produto' %}">Iniciar</a>
+        </div>
+        <div class="message-body">
+            O Estoque é uma aplicação voltada para o controle e gerenciamento de produtos. Com ela, o usuário pode
+            <strong>cadastrar novos itens</strong> com informações como nome, categoria, unidade e preço. Além disso, é possível registrar
+            <strong>entradas</strong> de produtos (como compras ou reposições) e <strong>saídas</strong>  (como vendas ou consumo interno). A aplicação atualiza
+            automaticamente o saldo em estoque, facilitando o acompanhamento em tempo real. Tudo isso de forma simples,
+            organizada e acessível via painel web.
+        </div>
+      </article>
 {% endblock %}

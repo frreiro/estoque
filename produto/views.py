@@ -16,7 +16,7 @@ def new_produto(request):
                 form.add_error('preco', 'Insira apenas valores positivos maiores que zero.')
                 return render(request, 'new_produto.html', {'form': form})
             form.save() 
-            return redirect('index') 
+            return redirect('produto:list_produto') 
     else:     
         template_name = 'new_produto.html'
         context = {'form': ProdutoForm(),}
@@ -32,7 +32,7 @@ def update_produto(request, pk):
             if form.cleaned_data['preco'] <= 0:
                 form.add_error('preco', 'Insira apenas valores positivos maiores que zero.')
                 return render(request, 'update_produto.html', {'form': form})
-            return redirect('index') 
+            return redirect('produto:list_produto') 
     else:      
         template_name = 'update_produto.html'
         context = {'form': ProdutoForm(instance=produto),'pk': pk,}
@@ -41,4 +41,4 @@ def update_produto(request, pk):
 def delete_produto(request, pk): 
     produto = Produtos.objects.get(pk=pk) 
     produto.delete() 
-    return redirect('index')
+    return redirect('produto:list_produto')

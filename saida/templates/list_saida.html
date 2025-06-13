@@ -1,21 +1,51 @@
-{% extends 'base.html' %}{% block product %}
-<h2 class="subtitle">Saidas</h2>
-<a class="button is-primary" href="{% url 'saida:new_saida' %}">Novo</a>
+{% extends 'base.html' %}
+{% block product %}
+<h1 class="subtitle is-3 has-text-primary">
+  Saídas
+</h1>
+<div>
+  <nav class="navbar breadcrumb" aria-label="breadcrumbs">
+      <ul>
+          <li><a href="{% url 'produto:list_produto' %}">Pagina Inicial</a></li>
+          <li class="is-active"><a href="#">Saídas</a></li>
+      </ul>
+      <div class="navbar-end">
+          <a class="button has-text-primary" href="{% url 'saida:new_saida' %}">
+              <span class="icon is-small mr-1">
+                  <i class="fa-solid fa-plus"></i>
+              </span>
+              Novo
+          </a>
+      </div>
+  </nav>
+</div>
 <table class="table is-striped is-hoverable is-fullwidth">
   <thead>
     <tr>
       <th>Id</th>
       <th>Produto</th>
+      <th>Cor</th>
       <th>Quantidade</th>
       <th></th>
-    </tr>
+  </tr>
   </thead>
   <tbody>{% for saida in saidas %}<tr>
       <th>{{ saida.id }}</th>
       <td>{{ saida.produto }}</td>
-      <td>{{ saida.quantidade }}</td>
-      <td><a class="button is-primary" href="{% url 'saida:update_saida' saida.id %}">alterar</a></td>
-      <td><a class="button is-primary" href="{% url 'saida:delete_saida' saida.id %}">deletar</a></td>
-    </tr>{% endfor %} </tbody>
+      <td>{{ saida.produto.cor }}</td>
+      <td class="is-flex justify-content is-justify-content-space-between">
+        {{ saida.quantidade }}
+        <a href="{% url 'saida:update_saida' saida.id%}">
+            <i class="fa-solid fa-pen"></i>
+            Editar
+        </a>
+        <a class="has-text-danger" href="{% url 'saida:delete_saida' saida.id%}">
+            <i class="fa-solid fa-trash"></i>
+            Remover
+        </a>
+    </td>
+    <td></td>
+    </tr>{% endfor %} 
+  </tbody>
 </table>
 {% endblock %}

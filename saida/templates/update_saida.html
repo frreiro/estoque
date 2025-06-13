@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block product %}
-  <p>Alterar Saida</p>
+<h1 class="subtitle is-3 has-text-primary">
+  Editar Saída
+</h1>
+<div>
+  <nav class="navbar breadcrumb" aria-label="breadcrumbs">
+      <ul>
+          <li><a href="{% url 'saida:list_saida' %}">Pagina Inicial</a></li>
+          <li><a href="{% url 'saida:list_saida' %}">Saídas</a></li>
+          <li class="is-active"><a href="#">Editar Saída</a></li>
+      </ul>
+  </nav>
+</div>
     <form action="{% url 'saida:update_saida' pk %}" method="POST">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button class="button is-primary" type="submit">salvar</button>
+      <!-- {{ form.as_p }}  -->
+      {{ form|crispy }}
+      <button class="button is-primary mt-5" type="submit">salvar</button>
   </form>
 {% endblock %}

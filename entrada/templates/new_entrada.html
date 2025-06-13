@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block product %}
-<p>Nova Entrada</p>
+<h1 class="subtitle is-3 has-text-primary">
+  Nova Entrada
+</h1>
+<div>
+  <nav class="navbar breadcrumb" aria-label="breadcrumbs">
+      <ul>
+          <li class=""><a href="{% url 'entrada:list_entrada' %}">Pagina Inicial</a></li>
+          <li class="is-active"><a href="#">Nova Entrada</a></li>
+      </ul>
+  </nav>
+</div>
 <form action="{% url 'entrada:new_entrada' %}" method="POST">
   {% csrf_token %}
-  {{ form.as_p }}
+  <!-- {{ form.as_p }} -->
+  {{ form|crispy }}
   <button class="button is-primary" type="submit">salvar</button>
 </form>
 {% endblock %}

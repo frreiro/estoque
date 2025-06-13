@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 {% block product %}
-  {% if error %}
-    <div class="alert alert-danger">
-      {{ error }}
-    </div>
-  {% endif %}
+{% if error %}
+<h1 class="subtitle is-3 has-text-primary">
+  Remover Entrada
+</h1>
+<div>
+  <nav class="navbar breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{% url 'entrada:list_entrada' %}">Pagina Inicial</a></li>
+      <li><a href="{% url 'entrada:list_entrada' %}">Entradas</a></li>
+      <li class="is-active"><a href="#">Remover Entrada</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="alert alert-danger">
+  {{ error }}
+</div>
+{% endif %}
 {% endblock %}
